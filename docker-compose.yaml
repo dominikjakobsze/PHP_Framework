@@ -8,7 +8,8 @@ services:
       app_network:
         aliases:
           - php
-    command: tail -f /dev/null
+    # command: tail -f /dev/null
+    command: php -S 0.0.0.0:7500 framework/public/index.php
     build:
       context: .
       dockerfile: dockerfiles/php/Dockerfile
@@ -16,7 +17,7 @@ services:
     volumes:
       - ./:/framework
     ports:
-      - 7500:7500
+      - 7400:7500
 
 networks:
   app_network:
