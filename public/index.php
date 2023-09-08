@@ -1,3 +1,6 @@
 <?php declare(strict_types=1);
 
-print_r("Test fdfd fd");
+require_once dirname(__DIR__) . "/vendor/autoload.php";
+
+
+dd("test");
