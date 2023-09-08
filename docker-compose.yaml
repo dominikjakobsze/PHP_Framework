@@ -9,3 +9,15 @@ services:
         aliases:
           - php
     command: tail -f /dev/null
+    build:
+      context: .
+      dockerfile: dockerfiles/php/Dockerfile
+      # php -S 0.0.0.0:7500 public/index.php
+    volumes:
+      - ./:/framework
+    ports:
+      - 7500:7500
+
+networks:
+  app_network:
+    driver: bridge
