@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  php:
+    container_name: php
+    hostname: php
+    networks:
+      app_network:
+        aliases:
+          - php
+    command: tail -f /dev/null
