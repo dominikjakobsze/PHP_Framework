@@ -17,6 +17,7 @@ class Kernel
             });
 
             $router->addRoute('GET', '/posts/{id:\d+}', function($routeParams){
+                dd($routeParams);
                 return new Response(content: "<h1> This is post {$routeParams['id']} </h1>");
             });
 
@@ -27,8 +28,10 @@ class Kernel
             $request->getNormalizedPath()
         );
 
-        // [$status, $handler, $routeParams] = $routerInfo;
+        // 0,1,2 => [$status, $handler, $routeParams] = $routerInfo;
 
         return $routerInfo[1]($routerInfo[2]);
+        
+        //return $routerInfo[1]($routerInfo[2], $someData); => function($routeParams, $anyNameForSomeData)
     }
 }
