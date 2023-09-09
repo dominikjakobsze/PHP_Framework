@@ -17,12 +17,15 @@ class Kernel
             });
 
             $router->addRoute('GET', '/posts/{id:\d+}', function($routeParams){
-                return new Response(content: "<h1>This is post {$routeParams['id']} </h1>");
+                return new Response(content: "<h1> This is post {$routeParams['id']} </h1>");
             });
 
         });
-        
-        $routerInfo = $dispatcher->dispatch($request->server['REQUEST_METHOD'], $request->server['REQUEST_URI']);
+
+        $routerInfo = $dispatcher->dispatch(
+            $request->server['REQUEST_METHOD'], 
+            $request->getNormalizedPath()
+        );
 
         // [$status, $handler, $routeParams] = $routerInfo;
 

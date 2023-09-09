@@ -18,4 +18,9 @@ class Request
     {
         return new static($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
     }
+
+    public function getNormalizedPath(): string
+    {
+        return preg_replace('/\?.*/', '', $this->server['REQUEST_URI']);
+    }
 }
