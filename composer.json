@@ -6,6 +6,7 @@
         }
     },
     "require": {
-        "symfony/var-dumper": "^6.3"
+        "symfony/var-dumper": "^6.3",
+        "nikic/fast-route": "^1.3"
     }
 }
