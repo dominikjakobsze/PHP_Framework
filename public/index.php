@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use Core\Http\Kernel;
 use Core\Http\Request;
 use Core\Http\Response;
 
@@ -9,7 +10,9 @@ require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 $request = Request::createFromGlobals();
 
-$response = new Response(content: '<h1>Hello</h1>', status: 404, headers: []);
+$kernel = new Kernel();
+
+$response = $kernel->handle($request);
 
 $response->send();
 
