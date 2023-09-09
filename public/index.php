@@ -9,7 +9,7 @@ require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 $request = Request::createFromGlobals();
 
-$response = new Response(content: '', status: 404, headers: []);
+$response = new Response(content: '<h1>Hello</h1>', status: 404, headers: []);
 
 $response->send();
 

@@ -14,6 +14,6 @@ class Response
 
     public function send(): void
     {
-        
+        echo $this->content;
     }
 }
