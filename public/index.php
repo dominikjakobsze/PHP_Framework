@@ -6,6 +6,8 @@ use Core\Http\Response;
 
 //Front Controller
 
+define('BASE_PATH', dirname(__DIR__));
+
 require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 $request = Request::createFromGlobals();
