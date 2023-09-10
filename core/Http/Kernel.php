@@ -10,23 +10,29 @@ class Kernel
 {
     public function handle(Request $request): Response
     {
+        // $webRoutes = require_once BASE_PATH . '/routes/webRoutes.php';
+        // //dd($webRoutes);
+        // foreach($webRoutes as $route){
+        //     //dd(...$route);
+        // }
         $dispatcher = simpleDispatcher(function(RouteCollector $router) {
 
             /*
-            return [
-                [
-                    'GET', '/', [HomeController::class, 'index']
-                ]
-            ];
-            $router->addRoute($route[0], $route[1], $route[2]);
-            $route[0] = GET
-            $route[1] = /
-            $route[2] = [HomeController::class, 'index']
+                return [
+                    [
+                        'GET', '/', [HomeController::class, 'index']
+                    ]
+                ];
+                $router->addRoute($route[0], $route[1], $route[2]);
+                $route[0] = GET
+                $route[1] = /
+                $route[2] = [HomeController::class, 'index']
             */
 
             $webRoutes = require_once BASE_PATH . '/routes/webRoutes.php';
             foreach($webRoutes as $route){
                 $router->addRoute($route[0], $route[1], $route[2]);
+                // $router->addRoute(...$route);
             }
 
         });
