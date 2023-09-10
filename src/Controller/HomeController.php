@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use Core\Http\Response;
+
 class HomeController
 {
-    public function index()
+    public function index(): Response
     {
-        dd('test');
+        return new Response('test');
     }
 }
