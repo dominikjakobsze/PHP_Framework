@@ -8,6 +8,10 @@ class HomeController
 {
     public function index(): Response
     {
-        return new Response('test');
+        return new Response('index');
+    }
+    public function show($routeParams): Response
+    {
+        return new Response("show post {$routeParams['id']}");
     }
 }
