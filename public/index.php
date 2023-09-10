@@ -22,3 +22,4 @@ dd($response);
 
 // !@ everytime you add new library/package, you must index workspace !@ 
 // View => command palette || right click and at the bottom "command palette"
+// composer dump-autoload

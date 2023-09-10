@@ -1,6 +1,6 @@
 <?php
 
-use Core\Http\Response;
+use App\Controller\HomeController;
 
 return [
     [

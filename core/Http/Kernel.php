@@ -44,7 +44,13 @@ class Kernel
 
         // 0,1,2 => [$status, $handler, $routeParams] = $routerInfo;
 
-        return $routerInfo[1]($routerInfo[2]);
+        [$status, [$controller, $method], $routeParams] = $routerInfo;
+
+        $result = new $controller();
+        
+        return $result->$method($routeParams);
+
+        //return $routerInfo[1]($routerInfo[2]);
         
         //return $routerInfo[1]($routerInfo[2], $additionalData); => function($routeParams, $anyNameForAdditionalData)
     }
