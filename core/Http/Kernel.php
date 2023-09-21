@@ -3,6 +3,7 @@
 namespace Core\Http;
 
 use Closure;
+use Core\Exceptions\ExceptionRouteInterface;
 use Core\Routing\Router;
 use Exception;
 
@@ -24,10 +25,16 @@ class Kernel
                 [[$controller,$method], $routeParams] = $initAction;
                 return (new $controller())->$method($routeParams);
             }
-        }catch(Exception $exception){
+        }catch(ExceptionRouteInterface $exception){
             return new Response(
                 content: $exception->getMessage(),
                 status: $exception->getCode(),
+                headers: []
+            );
+        }catch(Exception $exception){
+            return new Response(
+                content: "unexpected error",
+                status: 500,
                 headers: []
             );
         }

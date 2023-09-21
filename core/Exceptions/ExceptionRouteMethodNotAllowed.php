@@ -3,8 +3,9 @@
 namespace Core\Exceptions;
 
 use Exception;
+use Core\Exceptions\ExceptionRouteInterface;
 
-class ExceptionMethodNotAllowed extends Exception
+class ExceptionRouteMethodNotAllowed extends Exception implements ExceptionRouteInterface
 {
     public function __construct()
     {

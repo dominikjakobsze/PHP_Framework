@@ -14,5 +14,10 @@ return [
         'GET', '/test/{id:\d+}', function($routeParams){
             return new Response("Hello! {$routeParams['id']}");
         }
+    ],
+    [
+        'POST', '/testing/{id:\d+}', function($routeParams){
+            return new Response("Hello! {$routeParams['id']}");
+        }
     ]
 ];

@@ -2,7 +2,7 @@
 
 namespace Core\Routing;
 
-use Core\Exceptions\ExceptionMethodNotAllowed;
+use Core\Exceptions\ExceptionRouteMethodNotAllowed;
 use Core\Exceptions\ExceptionRouteNotFound;
 use Core\Http\Request;
 use Exception;
@@ -33,7 +33,7 @@ class Router
             throw new ExceptionRouteNotFound();
         }
         if($status == 2){
-            throw new ExceptionMethodNotAllowed();
+            throw new ExceptionRouteMethodNotAllowed();
         }
         return null;
     }
