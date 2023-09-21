@@ -30,10 +30,10 @@ class Router
     private function handleRouteStatus(int $status): Exception|null
     {
         if($status == 0){
-            throw new ExceptionRouteNotFound(message: "Not Found", code: 404);
+            throw new ExceptionRouteNotFound();
         }
         if($status == 2){
-            throw new ExceptionMethodNotAllowed(message: "Method Not Allowed", code: 405);
+            throw new ExceptionMethodNotAllowed();
         }
         return null;
     }

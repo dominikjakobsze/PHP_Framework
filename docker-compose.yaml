@@ -9,7 +9,7 @@ services:
         aliases:
           - php
     # command: tail -f /dev/null
-    command: bash -c "composer -v && php -v && php -S 0.0.0.0:7500 framework/public/index.php"
+    command: bash -c "composer -v && php -v && pwd && php -S 0.0.0.0:7500 framework/public/index.php"
     build:
       context: .  
       dockerfile: dockerfiles/php/Dockerfile
