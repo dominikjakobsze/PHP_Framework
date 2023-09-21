@@ -10,4 +10,4 @@ class ExceptionMethodNotAllowed extends Exception
     {
         parent::__construct(message: "Method Not Allowed", code: 405);
     }
-}
+}   

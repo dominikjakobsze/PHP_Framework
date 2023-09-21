@@ -13,7 +13,7 @@ class Kernel
     )
     {
     }
-    public function handle(Request $request)
+    public function handle(Request $request): Response
     {
         try{
             $initAction = $this->router->dispatch($request);
@@ -25,7 +25,11 @@ class Kernel
                 return (new $controller())->$method($routeParams);
             }
         }catch(Exception $exception){
-            dd($exception);
+            return new Response(
+                content: $exception->getMessage(),
+                status: $exception->getCode(),
+                headers: []
+            );
         }
     }
 }

@@ -2,7 +2,6 @@
 
 use Core\Http\Kernel;
 use Core\Http\Request;
-use Core\Http\Response;
 use Core\Routing\Router;
 
 //Front Controller
@@ -21,5 +20,5 @@ $response->send();
 dd($response);
 
 // !@ everytime you add new library/package, you must index workspace !@ 
-// View => command palette || right click and at the bottom "command palette"
+// View => command palette || right click and at the bottom "command palette" and then type "index workspace"
 // composer dump-autoload
