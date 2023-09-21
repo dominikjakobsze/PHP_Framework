@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\HomeController;
+use Core\Http\Response;
 
 return [
     [
@@ -8,5 +9,10 @@ return [
     ],
     [
         'GET', '/posts/{id:\d+}', [HomeController::class, 'show']
+    ],
+    [
+        'GET', '/test/{id:\d+}', function($routeParams){
+            return new Response("Hello! {$routeParams['id']}");
+        }
     ]
 ];

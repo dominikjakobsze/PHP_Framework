@@ -2,6 +2,7 @@
 
 namespace Core\Http;
 
+use Closure;
 use Core\Routing\Router;
 use Exception;
 
@@ -15,8 +16,14 @@ class Kernel
     public function handle(Request $request)
     {
         try{
-            [[$controller,$method], $routeParams] = $this->router->dispatch($request);
-            return (new $controller())->$method($routeParams);
+            $initAction = $this->router->dispatch($request);
+            if($initAction[0] instanceof Closure){
+                [$func, $routeParams] = $initAction;
+                return $func($routeParams);
+            }else{
+                [[$controller,$method], $routeParams] = $initAction;
+                return (new $controller())->$method($routeParams);
+            }
         }catch(Exception $exception){
             dd($exception);
         }

@@ -18,8 +18,13 @@ class Router
         $dispatcher = $this->registerRoutes();
         $routeInfo = $this->handleRouteInfo($dispatcher, $request);
         $this->handleRouteStatus($routeInfo[0]);
-        [$status, [$controller, $method], $routeParams] = $this->handleRouteInfo($dispatcher, $request);
-        return [[$controller,$method], $routeParams];
+        if(is_array($routeInfo[1])){
+            [$status, [$controller, $method], $routeParams] = $routeInfo;
+            return [[$controller,$method], $routeParams];
+        }else{
+            [$status, $func, $routeParams] = $routeInfo;
+            return [$func, $routeParams];
+        }
     }
 
     private function handleRouteStatus(int $status): Exception|null
