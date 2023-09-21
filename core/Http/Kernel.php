@@ -11,12 +11,12 @@ class Kernel
         private Router $router
     )
     {
-        
     }
-    public function handle(Request $request): Response
+    public function handle(Request $request)
     {
         try{
-            dd($this->router);
+            [[$controller,$method], $routeParams] = $this->router->dispatch($request);
+            return (new $controller())->$method($routeParams);
         }catch(Exception $exception){
             dd($exception);
         }
