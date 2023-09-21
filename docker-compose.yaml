@@ -11,7 +11,7 @@ services:
     # command: tail -f /dev/null
     command: bash -c "composer -v && php -v && php -S 0.0.0.0:7500 framework/public/index.php"
     build:
-      context: .
+      context: .  
       dockerfile: dockerfiles/php/Dockerfile
       # php -S 0.0.0.0:7500 public/index.php
     volumes:

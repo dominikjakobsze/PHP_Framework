@@ -3,6 +3,7 @@
 use Core\Http\Kernel;
 use Core\Http\Request;
 use Core\Http\Response;
+use Core\Routing\Router;
 
 //Front Controller
 
@@ -11,7 +12,7 @@ require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 $request = Request::createFromGlobals();
 
-$kernel = new Kernel();
+$kernel = new Kernel(new Router());
 
 $response = $kernel->handle($request);
 
