@@ -28,8 +28,10 @@ return [
             if (file_exists($mediaPath)) {
                 header("Content-Type: ".mime_content_type($mediaPath));
                 readfile($mediaPath);
+                exit();
             }
-            exit();
+            
+            //exception handling, return 204
         }
     ]
 ];
