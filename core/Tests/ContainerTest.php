@@ -2,13 +2,19 @@
 
 namespace Core\Tests;
 
+use Core\Container\Container;
 use PHPUnit\Framework\TestCase;
+use Core\Tests\DependantClass;
 
 class ContainerTest extends TestCase
 {
     public function test_a_service_can_be_retrieved_from_the_container()
     {
-        $this->assertTrue(true);
+        $container = new Container();
+
+        $container->add("dependant-class", DependantClass::class);
+
+        $this->assertInstanceOf(DependantClass::class, $container->get("dependant-class"));
     }
 }
 
