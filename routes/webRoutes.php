@@ -19,5 +19,10 @@ return [
         'POST', '/testing/{id:\d+}', function($routeParams){
             return new Response("Hello! {$routeParams['id']}");
         }
+    ],
+    [
+        'GET', '/{media}/{path:.+}', function($routeParams){
+            dd($routeParams);
+        }
     ]
 ];

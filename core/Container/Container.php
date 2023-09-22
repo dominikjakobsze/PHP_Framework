@@ -12,8 +12,13 @@ class Container implements ContainerInterface
 
     }
 
-    public function has(string $id)
+    public function has(string $id): bool
     {
 
+    }
+
+    public function add(string $id, string|object $concrete = null)
+    {
+        
     }
 }
