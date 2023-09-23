@@ -4,7 +4,6 @@ namespace Core\Tests;
 
 use Core\Container\Container;
 use PHPUnit\Framework\TestCase;
-use Core\Tests\DependantClass;
 
 class ContainerTest extends TestCase
 {
@@ -12,10 +11,23 @@ class ContainerTest extends TestCase
     {
         $container = new Container();
 
-        $container->add("dependant-class");
+        $container->add("dependant-class", DependantClass::class);
 
         $this->assertInstanceOf(DependantClass::class, $container->get("dependant-class"));
     }
+
+    public function test_exception_is_thrown()
+    {
+        $container = new Container();
+
+        $container->add("dependant");
+    }
+}
+
+//help classes
+class DependantClass
+{
+    
 }
 
 // run tests => vendor/bin/phpunit core/Tests --colors
