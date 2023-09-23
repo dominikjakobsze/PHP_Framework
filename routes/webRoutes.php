@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\HomeController;
+use Core\Exceptions\ExceptionRouteMediaNotFound;
 use Core\Http\Response;
 
 return [
@@ -30,8 +31,7 @@ return [
                 readfile($mediaPath);
                 exit();
             }
-            
-            //exception handling, return 204
+            throw new ExceptionRouteMediaNotFound();
         }
     ]
 ];
