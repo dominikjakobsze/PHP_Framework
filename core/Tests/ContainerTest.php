@@ -25,12 +25,30 @@ class ContainerTest extends TestCase
 
         $container->add("dependant-class");
     }
+
+    public function test_a_container_has_a_service()
+    {
+        $container = new Container();
+
+        $container->add("dependant-class", DependantClass::class);
+
+        $this->assertTrue($container->has("dependant-class"));
+    }
+
+    public function test_a_container_does_not_have_a_service()
+    {
+        $container = new Container();
+
+        $this->assertFalse($container->has("dependant-class"));
+    }
 }
 
 //help classes
 class DependantClass
 {
-    
+    public function example(){
+        dd("test");
+    }
 }
 
 // run tests => vendor/bin/phpunit core/Tests --colors
