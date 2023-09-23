@@ -11,9 +11,9 @@ class Container implements ContainerInterface
 
     private array $services = [];
 
-    public function get(string $id)
+    public function get(string $id): string|object
     {
-        return new $this->services[$id];
+        return $this->services[$id];
     }
 
     public function has(string $id): bool
@@ -21,7 +21,7 @@ class Container implements ContainerInterface
         return array_key_exists($id,$this->services);
     }
 
-    public function add(string $id, string|object $concrete = null)
+    public function add(string $id, string|object $concrete = null): void
     {
         if($concrete === null){
             if(!class_exists($id)) {

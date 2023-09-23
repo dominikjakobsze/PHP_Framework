@@ -3,6 +3,7 @@
 namespace Core\Tests;
 
 use Core\Container\Container;
+use Core\Exceptions\ContainerException;
 use PHPUnit\Framework\TestCase;
 
 class ContainerTest extends TestCase
@@ -16,11 +17,13 @@ class ContainerTest extends TestCase
         $this->assertInstanceOf(DependantClass::class, $container->get("dependant-class"));
     }
 
-    public function test_exception_is_thrown()
+    public function test_exception_is_thrown_a_service_cannot_be_found()
     {
         $container = new Container();
 
-        $container->add("dependant");
+        $this->expectException(ContainerException::class);
+
+        $container->add("dependant-class");
     }
 }
 
