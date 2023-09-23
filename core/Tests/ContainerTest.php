@@ -12,7 +12,7 @@ class ContainerTest extends TestCase
     {
         $container = new Container();
 
-        $container->add("dependant-class", DependantClass::class);
+        $container->add("dependant-class");
 
         $this->assertInstanceOf(DependantClass::class, $container->get("dependant-class"));
     }
