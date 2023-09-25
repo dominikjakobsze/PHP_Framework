@@ -14,7 +14,7 @@ $container = (new ContainerService)->getContainer();
 
 $request = Request::createFromGlobals();
 
-$kernel = new Kernel(new Router());
+$kernel = $container->get(Kernel::class);
 
 $response = $kernel->handle($request);
 

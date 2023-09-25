@@ -4,7 +4,6 @@ namespace Core\Http;
 
 use Closure;
 use Core\Exceptions\ExceptionRouteInterface;
-use Core\Routing\Router;
 use Core\Routing\RouterInterface;
 use Exception;
 
