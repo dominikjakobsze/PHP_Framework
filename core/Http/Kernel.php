@@ -5,12 +5,13 @@ namespace Core\Http;
 use Closure;
 use Core\Exceptions\ExceptionRouteInterface;
 use Core\Routing\Router;
+use Core\Routing\RouterInterface;
 use Exception;
 
 class Kernel
 {
     public function __construct(
-        private Router $router
+        private RouterInterface $router
     )
     {
     }

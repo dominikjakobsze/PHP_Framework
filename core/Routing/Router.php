@@ -11,7 +11,7 @@ use FastRoute\RouteCollector;
 
 use function FastRoute\simpleDispatcher;
 
-class Router 
+class Router implements RouterInterface
 {
     public function dispatch(Request $request)
     {
