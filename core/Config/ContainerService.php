@@ -23,6 +23,8 @@ class ContainerService
     }
     private function registerContainerServices()
     {
+        
+
         //services[RouterInterface::class] => Router::class
         $this->container->add(
             RouterInterface::class,
@@ -39,6 +41,8 @@ class ContainerService
         //it knows that to initialize Kernel::class, it needs to pass some object that
         //implements RouterInterface, but we binded before that every RouterInterface::class has to be
         //autowired as Router::class 
+
+        //basically => when I ask about RouterInterface::class give me Router::class
     }
 }
 
