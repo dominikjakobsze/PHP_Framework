@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Core\Exceptions\ResponseException;
 use Core\Http\Response;
 
 class HomeController
@@ -16,7 +17,8 @@ class HomeController
     }
     public function show($routeParams): Response
     {
-        return new Response("show post {$routeParams['id']}");
+        throw new ResponseException(message: "login", code: ResponseException::NEED_TO_AUTHENTICATE);
+        return new Response("show post {$routeParams['id']}, {$this->homeDependant->getTest()}");
     }
 }
 
@@ -25,6 +27,6 @@ class HomeDependant
 {
     public function getTest()
     {
-        return "test";
+        return "HomeDependant::class test::method => autowired class to HomeController";
     }
 }

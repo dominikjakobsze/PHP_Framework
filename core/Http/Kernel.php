@@ -4,6 +4,7 @@ namespace Core\Http;
 
 use Closure;
 use Core\Exceptions\ExceptionRouteInterface;
+use Core\Exceptions\ResponseException;
 use Core\Routing\RouterInterface;
 use Exception;
 use League\Container\Container;
@@ -33,12 +34,20 @@ class Kernel
                 status: $exception->getCode(),
                 headers: []
             );
+            exit();
+        }catch(ResponseException $exception){
+            return new Response(
+                content: $exception->getMessage(),
+                status: $exception->getCode(),
+                headers: []
+            );
         }catch(Exception $exception){
             return new Response(
                 content: "unexpected error",
                 status: 500,
                 headers: []
             );
+            exit();
         }
     }
 }
