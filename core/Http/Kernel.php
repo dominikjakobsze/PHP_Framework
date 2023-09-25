@@ -34,7 +34,6 @@ class Kernel
                 status: $exception->getCode(),
                 headers: []
             );
-            exit();
         }catch(ResponseException $exception){
             return new Response(
                 content: $exception->getMessage(),
@@ -47,7 +46,6 @@ class Kernel
                 status: 500,
                 headers: []
             );
-            exit();
         }
     }
 }

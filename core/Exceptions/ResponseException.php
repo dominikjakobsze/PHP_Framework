@@ -13,7 +13,7 @@ class ResponseException extends Exception
     public const NOT_FOUND = 404;
     public const INTERNAL_ERROR = 500;
 
-    public function __construct(string $message = null, int $code)
+    public function __construct(string $message, int $code)
     {
         parent::__construct(message: $message, code: $code);
     }
