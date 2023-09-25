@@ -65,8 +65,10 @@ class ContainerTest extends TestCase
     public function test_services_can_be_autowired()
     {
         $container = new Container();
+        
+        $service = $container->get(DependantAutoClass::class);
 
-        $container->
+        dd($service);
     }
 }
 
@@ -92,4 +94,4 @@ class DependencyClass
 // run tests => vendor/bin/phpunit --colors=always core/Tests
 
 // run single specific test
-// vendor/bin/phpunit --colors=always --filter=test_exception_is_not_thrown_a_service_can_be_found_by_string core/Tests/ContainerTest.php
+// vendor/bin/phpunit --colors=always --filter=test_services_can_be_autowired core/Tests/ContainerTest.php

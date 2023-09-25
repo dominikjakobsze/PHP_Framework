@@ -13,7 +13,10 @@ class Container implements ContainerInterface
 
     public function get(string $id): string|object
     {
-        return new $this->services[$id];
+        if(!$this->has($id)){
+            $this->add($id);
+        }
+        return $this->services[$id];
     }
 
     public function has(string $id): bool
