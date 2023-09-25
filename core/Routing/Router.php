@@ -8,18 +8,20 @@ use Core\Http\Request;
 use Exception;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
+use League\Container\Container;
 
 use function FastRoute\simpleDispatcher;
 
 class Router implements RouterInterface
 {
-    public function dispatch(Request $request)
+    public function dispatch(Request $request, Container $container)
     {
         $dispatcher = $this->registerRoutes();
         $routeInfo = $this->handleRouteInfo($dispatcher, $request);
         $this->handleRouteStatus($routeInfo[0]);
         if(is_array($routeInfo[1])){
             [$status, [$controller, $method], $routeParams] = $routeInfo;
+            $controller = $container->get($controller);
             return [[$controller,$method], $routeParams];
         }else{
             [$status, $func, $routeParams] = $routeInfo;

@@ -6,6 +6,7 @@ use Core\Http\Kernel;
 use Core\Routing\Router;
 use Core\Routing\RouterInterface;
 use League\Container\Container;
+use League\Container\ReflectionContainer;
 
 class ContainerService
 {
@@ -24,6 +25,7 @@ class ContainerService
     private function registerContainerServices()
     {
         
+        $this->container->delegate(new ReflectionContainer(true));
 
         //services[RouterInterface::class] => Router::class
         $this->container->add(
@@ -36,7 +38,9 @@ class ContainerService
         $this->container->add(
             Kernel::class,
             Kernel::class
-        )->addArgument(RouterInterface::class);
+        )
+        ->addArgument(RouterInterface::class)
+        ->addArgument($this->container);
 
         //it knows that to initialize Kernel::class, it needs to pass some object that
         //implements RouterInterface, but we binded before that every RouterInterface::class has to be

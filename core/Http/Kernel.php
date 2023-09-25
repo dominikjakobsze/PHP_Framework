@@ -6,24 +6,26 @@ use Closure;
 use Core\Exceptions\ExceptionRouteInterface;
 use Core\Routing\RouterInterface;
 use Exception;
+use League\Container\Container;
 
 class Kernel
 {
     public function __construct(
-        private RouterInterface $router
+        private RouterInterface $router,
+        private Container $container
     )
     {
     }
     public function handle(Request $request): Response
     {
         try{
-            $initAction = $this->router->dispatch($request);
+            $initAction = $this->router->dispatch($request, $this->container);
             if($initAction[0] instanceof Closure){
                 [$func, $routeParams] = $initAction;
                 return $func($routeParams);
             }else{
                 [[$controller,$method], $routeParams] = $initAction;
-                return (new $controller())->$method($routeParams);
+                return ($controller)->$method($routeParams);
             }
         }catch(ExceptionRouteInterface $exception){
             return new Response(
