@@ -65,7 +65,9 @@ class ContainerTest extends TestCase
     public function test_services_can_be_autowired()
     {
         $container = new Container();
-        
+
+        //$container->get(DependantClass::class);
+
         $service = $container->get(DependantAutoClass::class);
 
         dd($service);
