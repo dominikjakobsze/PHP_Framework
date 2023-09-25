@@ -18,16 +18,12 @@ class Container implements ContainerInterface
             $this->add($id);
         }
 
-        //dd($this->services[$id], gettype($this->services[$id]), "get method in Constructor");
-
         $resolvedObject = $this->resolve($this->services[$id]);
-
-        dd($resolvedObject, gettype($resolvedObject), "get method in Constructor");
 
         return $resolvedObject;
     }
 
-    private function resolve(string $objectToResolve): object
+    private function resolve(string $objectToResolve): string|object
     {
         $reflectionObject = new ReflectionClass($objectToResolve);
 
@@ -46,9 +42,12 @@ class Container implements ContainerInterface
 
     private function resolveObjectDependencies(array $dependenciesToResolve)
     {
+        $resolvedDependencies = [];
         foreach($dependenciesToResolve as $dependency){
-            dd($dependency->getType());
+            $service = $this->get($dependency->getType()->getName());
+            $resolvedDependencies[] = $service;
         }
+        return $resolvedDependencies;
     }
 
     public function has(string $id): bool

@@ -66,11 +66,11 @@ class ContainerTest extends TestCase
     {
         $container = new Container();
 
-        //$container->get(DependantClass::class);
-
         $service = $container->get(DependantAutoClass::class);
 
-        dd($service);
+        $this->assertInstanceOf(DependantAutoClass::class, $service);
+        $this->assertInstanceOf(DependencyClass::class, $service->getDependency());
+        $this->assertInstanceOf(SubDependencyClass::class, ($service->getDependency())->getSubDependency());
     }
 }
 
@@ -86,8 +86,25 @@ class DependantAutoClass
     {
         
     }
+
+    public function getDependency()
+    {
+        return $this->dependency;
+    }
 }
 class DependencyClass
+{
+    public function __construct(private SubDependencyClass $dependency)
+    {
+        
+    }
+    public function getSubDependency()
+    {
+        return $this->dependency;
+    }
+}
+
+class SubDependencyClass
 {
 
 }
