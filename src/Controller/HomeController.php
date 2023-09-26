@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use Core\Controller\AbstractController;
 use Core\Exceptions\ResponseException;
 use Core\Http\Response;
 use Twig\Environment;
 
-class HomeController
+class HomeController extends AbstractController
 {
     public function __construct(private HomeDependant $homeDependant, private Environment $twig)
     {
@@ -14,7 +15,7 @@ class HomeController
     }
     public function index(): Response
     {
-        dd($this->twig);
+        dd($this->container->get(Environment::class));
         return new Response('index');
     }
     public function show($routeParams): Response
