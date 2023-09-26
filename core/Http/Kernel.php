@@ -31,14 +31,14 @@ class Kernel
         }
         catch(ExceptionRouteInterface $exception){
             return new Response(
-                content: $exception->getMessage(),
+                content: "{$exception->getMessage()} {$exception->getCode()}"." ExceptionRouteInterface",
                 status: $exception->getCode(),
                 headers: []
             );
         }
         catch(ResponseException $exception){
             return new Response(
-                content: "{$exception->getMessage()} {$exception->getCode()}",
+                content: "{$exception->getMessage()} {$exception->getCode()}"." ResponseException",
                 status: $exception->getCode(),
                 headers: []
             );

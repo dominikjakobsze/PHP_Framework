@@ -3,7 +3,7 @@
 use Core\Exceptions\ExceptionRouteMediaNotFound;
 
 return[
-    define('BASE_PATH', __DIR__),
+    define('BASE_PATH', dirname(__DIR__)),
     define('APP_ENV', "dev"),
     define(
         'APP_ROUTES',

@@ -9,6 +9,6 @@ class ExceptionRouteMethodNotAllowed extends Exception implements ExceptionRoute
 {
     public function __construct()
     {
-        parent::__construct(message: "Method Not Allowed", code: 405);
+        parent::__construct(message: "Route Method Not Allowed", code: 405);
     }
 }   

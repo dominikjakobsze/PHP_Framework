@@ -9,6 +9,6 @@ class ExceptionRouteNotFound extends Exception implements ExceptionRouteInterfac
 {
     public function __construct()
     {
-        parent::__construct(message: "Not Found", code: 404);
+        parent::__construct(message: "Route Not Found", code: 404);
     }
 }
