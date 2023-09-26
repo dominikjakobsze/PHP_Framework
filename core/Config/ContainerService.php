@@ -5,8 +5,11 @@ namespace Core\Config;
 use Core\Http\Kernel;
 use Core\Routing\Router;
 use Core\Routing\RouterInterface;
+use League\Container\Argument\Literal\StringArgument;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class ContainerService
 {
@@ -41,6 +44,15 @@ class ContainerService
         )
         ->addArgument(RouterInterface::class)
         ->addArgument($this->container);
+
+        //twig/twig
+        $this->container->addShared(FilesystemLoader::class)
+        ->addArgument(new StringArgument(BASE_PATH."/templates"));
+
+        $this->container->addShared(Environment::class)
+        ->addArgument(FilesystemLoader::class);
+
+        //twig/twig => when I ask about FilesystemLoader::class, I get new StringArgument(BASE_PATH."/templates")
 
         //it knows that to initialize Kernel::class, it needs to pass some object that
         //implements RouterInterface, but we binded before that every RouterInterface::class has to be

@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use Core\Exceptions\ResponseException;
 use Core\Http\Response;
+use Twig\Environment;
 
 class HomeController
 {
-    public function __construct(private HomeDependant $homeDependant)
+    public function __construct(private HomeDependant $homeDependant, private Environment $twig)
     {
         
     }
     public function index(): Response
     {
+        dd($this->twig);
         return new Response('index');
     }
     public function show($routeParams): Response

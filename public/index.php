@@ -24,4 +24,4 @@ APP_ENV === "dev" ? dd($response) : null;
 
 // !@ everytime you add new library/package, you must index workspace !@ 
 // View => command palette || right click and at the bottom "command palette" and then type "index workspace"
-// composer dump-autoload
+// you change something in autoload => composer dump-autoload
