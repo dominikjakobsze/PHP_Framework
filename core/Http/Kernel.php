@@ -28,24 +28,27 @@ class Kernel
                 [[$controller,$method], $routeParams] = $initAction;
                 return ($controller)->$method($routeParams);
             }
-        }catch(ExceptionRouteInterface $exception){
+        }
+        catch(ExceptionRouteInterface $exception){
             return new Response(
                 content: $exception->getMessage(),
                 status: $exception->getCode(),
-                headers: []
-            );
-        }catch(ResponseException $exception){
-            return new Response(
-                content: $exception->getMessage(),
-                status: $exception->getCode(),
-                headers: []
-            );
-        }catch(Exception $exception){
-            return new Response(
-                content: "unexpected error",
-                status: 500,
                 headers: []
             );
         }
+        catch(ResponseException $exception){
+            return new Response(
+                content: $exception->getMessage(),
+                status: $exception->getCode(),
+                headers: []
+            );
+        }
+        // catch(Exception $exception){
+        //     return new Response(
+        //         content: "unexpected error",
+        //         status: 500,
+        //         headers: []
+        //     );
+        // }
     }
 }

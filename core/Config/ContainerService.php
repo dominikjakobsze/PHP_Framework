@@ -2,11 +2,9 @@
 
 namespace Core\Config;
 
-use Core\Controller\AbstractController;
 use Core\Http\Kernel;
 use Core\Routing\Router;
 use Core\Routing\RouterInterface;
-use League\Container\Argument\Literal\StringArgument;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Twig\Environment;
@@ -31,30 +29,27 @@ class ContainerService
         
         $this->container->delegate(new ReflectionContainer(true));
 
-        $this->container->add(
+        $this->container->addShared(
             RouterInterface::class,
             Router::class
         );
         //basically => when I ask about RouterInterface::class give me Router::class
 
-        $this->container->add(
+        $this->container->addShared(
             Kernel::class,
             Kernel::class
         )
         ->addArgument(RouterInterface::class)
         ->addArgument($this->container);
-
+        
         //twig/twig
-        $this->container->addShared(FilesystemLoader::class)
-        ->addArgument(new StringArgument(BASE_PATH."/templates"));
-        //->addArgument -> bind to __construct parameter
-
-        $this->container->addShared(Environment::class)
-        ->addArgument(FilesystemLoader::class);
-
-        //AbstractController
-        $this->container->addShared(AbstractController::class)
-        ->addArgument($this->container);
+        // $this->container->addShared('twig', function () {
+        //     $loader = new FilesystemLoader(BASE_PATH."/templates");
+        //     $twig = new Environment($loader, [
+        //         'cache' => BASE_PATH."/templates",
+        //     ]);
+        //     return $twig;
+        // });
     }
 }
 
