@@ -2,7 +2,9 @@
 
 namespace Core\Http;
 
-class Response
+use Core\Http\ResponseInterface;
+
+class Response implements ResponseInterface
 {
     public function __construct(
         private string $content = '',

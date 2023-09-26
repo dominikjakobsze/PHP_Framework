@@ -5,14 +5,16 @@ namespace App\Controller;
 use Core\Controller\AbstractController;
 use Core\Exceptions\ResponseException;
 use Core\Http\Response;
-use Twig\Environment;
 
 class HomeController extends AbstractController
 {
     public function index(): Response
     {
-        dd($this->container->get('twig'));
-        return new Response('index');
+        return new Response(
+            content: ($this->container->get('twig'))->render('index.html', ['the' => 'variables', 'go' => 'here']),
+            status: 200,
+            headers: []
+        );
     }
     public function show($routeParams): Response
     {

@@ -41,15 +41,9 @@ class ContainerService
         )
         ->addArgument(RouterInterface::class)
         ->addArgument($this->container);
-        
-        //twig/twig
-        // $this->container->addShared('twig', function () {
-        //     $loader = new FilesystemLoader(BASE_PATH."/templates");
-        //     $twig = new Environment($loader, [
-        //         'cache' => BASE_PATH."/templates",
-        //     ]);
-        //     return $twig;
-        // });
+
+        $this->container->addShared(FilesystemLoader::class)->addArgument(BASE_PATH."/templates");
+        $this->container->addShared('twig',Environment::class)->addArgument(FilesystemLoader::class);
     }
 }
 
