@@ -17,7 +17,7 @@ class Kernel
     )
     {
     }
-    public function handle(Request $request): Response
+    public function handle(Request $request): ResponseInterface
     {
         try{
             $initAction = $this->router->dispatch($request, $this->container);

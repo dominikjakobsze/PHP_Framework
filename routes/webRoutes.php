@@ -9,6 +9,9 @@ return [
         'GET', '/', [HomeController::class, 'index']
     ],
     [
+        'GET', '/hometest', [HomeController::class, 'test']
+    ],
+    [
         'GET', '/posts/{id:\d+}', [HomeController::class, 'show']
     ],
     [

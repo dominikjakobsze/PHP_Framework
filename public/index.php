@@ -20,7 +20,7 @@ $response = $kernel->handle($request);
 
 $response->send();
 
-APP_ENV === "dev" ? dd($response) : null;
+//APP_ENV === "dev" ? dd($response) : null;
 
 // !@ everytime you add new library/package, you must index workspace !@ 
 // View => command palette || right click and at the bottom "command palette" and then type "index workspace"
