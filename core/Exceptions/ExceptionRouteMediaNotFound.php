@@ -9,6 +9,6 @@ class ExceptionRouteMediaNotFound extends Exception implements ExceptionRouteInt
 {
     public function __construct()
     {
-        parent::__construct(message: "Media Not Found", code: 204);
+        parent::__construct(message: "Media Not Found", code: 503);
     }
 }
