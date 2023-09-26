@@ -14,8 +14,16 @@ class Response implements ResponseInterface
     {
     }
 
-    public function send(): void
-    {
+    public function send()
+    {   
+        header('Content-Type: text/html');
+
+        http_response_code($this->status);
+
+        foreach ($this->headers as $header => $value) {
+            header("{$header}: {$value}");
+        }
+
         echo $this->content;
     }
 }

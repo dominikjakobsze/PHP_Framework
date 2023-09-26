@@ -38,7 +38,7 @@ class Kernel
         }
         catch(ResponseException $exception){
             return new Response(
-                content: $exception->getMessage(),
+                content: "{$exception->getMessage()} {$exception->getCode()}",
                 status: $exception->getCode(),
                 headers: []
             );

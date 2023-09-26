@@ -21,7 +21,7 @@ class JsonResponse implements ResponseInterface
         http_response_code($this->status);
 
         foreach ($this->headers as $header => $value) {
-            header("$header: $value");
+            header("{$header}: {$value}");
         }
 
         echo json_encode([

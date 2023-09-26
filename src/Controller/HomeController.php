@@ -10,6 +10,7 @@ use Core\Http\ResponseInterface;
 
 class HomeController extends AbstractController
 {
+    // 'GET', '/', [HomeController::class, 'index']
     public function index(): Response
     {
         return new Response(
@@ -18,12 +19,15 @@ class HomeController extends AbstractController
             headers: []
         );
     }
+
+    // 'GET', '/posts/{id:\d+}', [HomeController::class, 'show']
     public function show($routeParams): Response
     {
-        throw new ResponseException(message: "login", code: ResponseException::NEED_TO_AUTHENTICATE);
+        throw new ResponseException(message: "Need to authenticate", code: ResponseException::NEED_TO_AUTHENTICATE);
         return new Response("show post {$routeParams['id']}");
     }
 
+    // 'GET', '/hometest', [HomeController::class, 'test']
     public function test(): ResponseInterface
     {
         return new JsonResponse(
@@ -33,14 +37,5 @@ class HomeController extends AbstractController
             status: 200,
             headers: []
         );
-    }
-}
-
-//do not do that, only test!
-class HomeDependant
-{
-    public function getTest()
-    {
-        return "HomeDependant::class test::method => autowired class to HomeController";
     }
 }
