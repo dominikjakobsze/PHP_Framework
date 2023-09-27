@@ -15,10 +15,10 @@ class Response implements ResponseInterface
     }
 
     public function send()
-    {   
-        header('Content-Type: text/html');
-
+    { 
         http_response_code($this->status);
+
+        header("Content-Type: text/html");
 
         foreach ($this->headers as $header => $value) {
             header("{$header}: {$value}");

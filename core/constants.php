@@ -15,6 +15,8 @@ return[
                     $mediaPath = BASE_PATH."/resources/{$media}/{$path}";
                     if (file_exists($mediaPath)) {
 
+                        //header("Access-Control-Allow-Origin: http://localhost:7400");
+
                         http_response_code(200);
 
                         if($media === "js"){
