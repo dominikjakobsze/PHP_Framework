@@ -22,5 +22,6 @@ return [
         'POST', '/testing/{id:\d+}', function($routeParams){
             return new Response("Hello! {$routeParams['id']}");
         }
-    ]
+    ],
+    ...APP_ROUTES
 ];

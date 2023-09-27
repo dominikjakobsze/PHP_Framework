@@ -27,8 +27,7 @@ class HomeController extends AbstractController
     {
         return new JsonResponse(
             content: [
-                "test" => [1,2,3],
-                "get_params" => $_GET
+                "test" => [1,2,3]
             ],
             status: 200,
             headers: []

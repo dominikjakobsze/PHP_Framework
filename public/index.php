@@ -7,8 +7,8 @@ use Core\Routing\Router;
 
 //Front Controller
 
-require_once dirname(__DIR__)."/core/constants.php";
-require_once dirname(__DIR__)."/vendor/autoload.php";
+require_once dirname(__DIR__) . "/core/constants.php";
+require_once dirname(__DIR__) . "/vendor/autoload.php";
 
 $container = (new ContainerService)->getContainer();
 
