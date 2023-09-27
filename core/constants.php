@@ -5,6 +5,8 @@ use Core\Exceptions\ExceptionRouteMediaNotFound;
 return[
     define('BASE_PATH', dirname(__DIR__)),
     define('APP_ENV', "dev"),
+    define('APP_BACKEND_URL', "http://localhost:7400"),
+    define('APP_FRONTEND_URL', "http://localhost:7400"),
     define(
         'APP_ROUTES',
         [
@@ -15,7 +17,7 @@ return[
                     $mediaPath = BASE_PATH."/resources/{$media}/{$path}";
                     if (file_exists($mediaPath)) {
 
-                        //header("Access-Control-Allow-Origin: http://localhost:7400");
+                        header("Access-Control-Allow-Origin: ".APP_FRONTEND_URL);
 
                         http_response_code(200);
 
