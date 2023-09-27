@@ -26,12 +26,19 @@ services:
       app_network:
         aliases:
           - compiler
-    command: bash -c "npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css --watch"
+    command: bash -c "cd / && supervisord -n -c /svcnf/supervisord.conf"
+    # command: bash -c "cd /framework && npm install && npx -v && npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css && tail -f /dev/null"
+    # command: bash -c "cd /framework && npm install && npx -v && (npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css --watch &> /dev/null &) && tail -f /dev/null"
+    # command: bash -c "cd /framework && npm install && npx -v && while true; do npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css; sleep 5; done"
     build:
-      context: .  
+      context: .
       dockerfile: dockerfiles/compiler/Dockerfile
     volumes:
       - ./:/framework
+      - ./dockerfiles/compiler/supervisord.conf:/svcnf/supervisord.conf
+
+
+
 
 networks:
   app_network:

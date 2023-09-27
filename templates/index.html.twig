@@ -5,13 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>index</title>
-    <link rel="stylesheet" href="{{ global_backend_url }}/styles/main.css" media="all">
+    <link rel="stylesheet" href="{{ global_backend_url }}/styles/compiled-main.css">
 </head>
 <body>
     <h1 data-element="first">first</h1>
     <h1 id="test">fa</h1>
     <h1>{{ test }}</h1>
     <h1>sf</h1>
+    <h1 class="text-3xl uppercase underline">
+        Hello world!
+    </h1>
+    <h1 class="text-[70px] underline text-red-500">
+        Hello world!
+    </h1>
     <script type="module" src="{{ global_backend_url }}/js/main.mjs"></script>
 </body>
 </html>

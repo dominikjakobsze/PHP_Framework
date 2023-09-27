@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css --watch"
+  },
   "dependencies": {
     "hammerjs": "^2.0.8"
   },
