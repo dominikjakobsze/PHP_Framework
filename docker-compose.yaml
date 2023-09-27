@@ -1,41 +1,56 @@
 version: '3'
 
 services:
+
+  web:
+    container_name: web
+    hostname: web
+    networks:
+      app_network:
+        aliases:
+          - web
+    build:
+      context: .
+      dockerfile: dockerfiles/web/Dockerfile
+    volumes:
+      - ./:/framework
+      - ./dockerfiles/web/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+
   php:
     container_name: php
     hostname: php
+    # command: bash -c "cd /framework && composer -v && php -v && composer install"
     networks:
       app_network:
         aliases:
           - php
-    # command: tail -f /dev/null
-    command: bash -c "composer -v && php -v && pwd && php -S 0.0.0.0:7500 framework/public/index.php"
     build:
-      context: .  
+      context: .
       dockerfile: dockerfiles/php/Dockerfile
-      # php -S 0.0.0.0:7500 public/index.php
     volumes:
       - ./:/framework
     ports:
-      - 7400:7500
+      - 8500:9000
 
-  compiler:
-    container_name: compiler
-    hostname: compiler
-    networks:
-      app_network:
-        aliases:
-          - compiler
-    command: bash -c "cd / && supervisord -n -c /svcnf/supervisord.conf"
-    # command: bash -c "cd /framework && npm install && npx -v && npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css && tail -f /dev/null"
-    # command: bash -c "cd /framework && npm install && npx -v && (npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css --watch &> /dev/null &) && tail -f /dev/null"
-    # command: bash -c "cd /framework && npm install && npx -v && while true; do npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css; sleep 5; done"
-    build:
-      context: .
-      dockerfile: dockerfiles/compiler/Dockerfile
-    volumes:
-      - ./:/framework
-      - ./dockerfiles/compiler/supervisord.conf:/svcnf/supervisord.conf
+  # compiler:
+  #   container_name: compiler
+  #   hostname: compiler
+  #   networks:
+  #     app_network:
+  #       aliases:
+  #         - compiler
+  #   command: bash -c "cd / && supervisord -n -c /svcnf/supervisord.conf"
+  #   # command: bash -c "cd /framework && npm install && npx -v && npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css && tail -f /dev/null"
+  #   # command: bash -c "cd /framework && npm install && npx -v && (npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css --watch &> /dev/null &) && tail -f /dev/null"
+  #   # command: bash -c "cd /framework && npm install && npx -v && while true; do npx tailwindcss -i ./resources/styles/main.css -o ./resources/styles/compiled-main.css; sleep 5; done"
+  #   build:
+  #     context: .
+  #     dockerfile: dockerfiles/compiler/Dockerfile
+  #   volumes:
+  #     - ./:/framework
+  #     - ./dockerfiles/compiler/supervisord.conf:/svcnf/supervisord.conf
 
 
 
