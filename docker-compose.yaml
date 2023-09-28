@@ -9,13 +9,14 @@ services:
         aliases:
           - php
     # command: tail -f /dev/null
-    command: bash -c "composer -v && php -v && pwd && php -S 0.0.0.0:7500 framework/public/index.php"
+    command: bash -c "cd / && supervisord -n -c /svcnf/supervisord.conf"
     build:
       context: .  
       dockerfile: dockerfiles/php/Dockerfile
       # php -S 0.0.0.0:7500 public/index.php
     volumes:
       - ./:/framework
+      - ./dockerfiles/php/supervisord.conf:/svcnf/supervisord.conf
     ports:
       - 7400:7500
 
