@@ -11,17 +11,20 @@ return[
         'APP_ROUTES',
         [
             [
-                'GET', '/{media:img|video|gif|js|styles}/{path:.+}', function($routeParams){
+                'GET', '/{media:img|video|gif|js|styles|node_modules}/{path:.+}', function($routeParams){
                     $media = $routeParams['media'];
                     $path = $routeParams['path'];
                     $mediaPath = BASE_PATH."/resources/{$media}/{$path}";
+                    if($media === "node_modules"){
+                        $mediaPath = BASE_PATH."/{$media}/{$path}";
+                    }
                     if (file_exists($mediaPath)) {
 
                         header("Access-Control-Allow-Origin: ".APP_FRONTEND_URL);
 
                         http_response_code(200);
 
-                        if($media === "js"){
+                        if($media === "js" || $media === "node_modules"){
                             header("Content-Type: application/javascript");
                         }
                         else if($media === "styles"){
