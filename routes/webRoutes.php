@@ -11,7 +11,7 @@ return [
         'GET', '/hometest', [HomeController::class, 'test']
     ],
     [
-        'GET', '/posts/{id:\d+}', [HomeController::class, 'show']
+        'GET', '/home/{id:\d+}', [HomeController::class, 'show']
     ],
     [
         'GET', '/test/{id:\d+}', function($routeParams){
