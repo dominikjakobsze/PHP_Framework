@@ -9,6 +9,8 @@ class PostController extends AbstractController
 {
     public function create(): Response
     {
-        return $this->renderTemplate(templatePath: 'create-post.html.twig', additionalArgs: ["test"=>"test"]);
+        return $this->renderTemplate(templatePath: 'create-post.html.twig', additionalArgs: [
+            "hacked" => "<script>alert('you have been hacked')</script>"
+        ]);
     }
 }
